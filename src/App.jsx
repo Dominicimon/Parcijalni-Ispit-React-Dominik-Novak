@@ -4,7 +4,7 @@ import UserDetails from "./components/UserDetails";
 
 const App = () => {
   const [userData, setUserData] = useState(null);
-  const [repos, setRepos] = useState([]); // New state for repositories
+  const [repos, setRepos] = useState([]);
   const [error, setError] = useState(null);
 
   const fetchUserData = async (username) => {
@@ -15,33 +15,41 @@ const App = () => {
       }
       const user = await userResponse.json();
       setUserData(user);
-      setError(null); // Clear error on successful fetch
+      setError(null);
 
-      // Fetch user repositories
       const reposResponse = await fetch(`https://api.github.com/users/${username}/repos`);
       const repositories = await reposResponse.json();
-      setRepos(repositories); // Set the repositories state
+      setRepos(repositories);
     } catch (error) {
       console.error(error);
       setUserData(null);
-      setRepos([]); // Reset repositories on error
+      setRepos([]);
       setError(error.message);
     }
   };
 
   const handleReset = () => {
-    setUserData(null); // Clear user data
-    setRepos([]); // Clear repositories
-    setError(null); // Clear any errors
+    setUserData(null);
+    setRepos([]);
+    setError(null);
   };
 
   return (
     <div className="container mx-auto mt-5">
       <h1 className="text-4xl text-center">GitHub User Search</h1>
-      <FormComponent onSubmit={fetchUserData} />
+      {!userData && <FormComponent onSubmit={fetchUserData} />} {/* Conditionally render form */}
       {error && <p className="text-red-500 text-center">{error}</p>}
       {userData && (
-        <UserDetails userData={userData} repos={repos} onReset={handleReset} /> // Pass reset function
+        <>
+          <UserDetails userData={userData} repos={repos} />
+          <div className="flex justify-center mt-4">
+            {" "}
+            {/* Center the button */}
+            <button onClick={handleReset} className="bg-red-500 text-white rounded p-2">
+              Reset
+            </button>
+          </div>
+        </>
       )}
     </div>
   );

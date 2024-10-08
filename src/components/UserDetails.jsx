@@ -1,6 +1,6 @@
 import React from "react";
 
-const UserDetails = ({ userData, repos, onReset }) => {
+const UserDetails = ({ userData, repos }) => {
   return (
     <div className="user-details mt-5 p-5 border rounded shadow">
       <div className="flex items-center">
@@ -27,10 +27,6 @@ const UserDetails = ({ userData, repos, onReset }) => {
       ) : (
         <p>No repositories found.</p>
       )}
-      <button onClick={onReset} className="mt-4 bg-red-500 text-white rounded p-2">
-        Reset
-      </button>{" "}
-      {/* Reset button */}
     </div>
   );
 };
