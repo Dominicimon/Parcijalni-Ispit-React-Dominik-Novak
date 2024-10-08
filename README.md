@@ -11,3 +11,4 @@ Currently, two official plugins are available:
 # Parcijalni-Ispit-React-Dominik-Novak
 # Dominicimon-Parcijalni-Ispit-React-Dominik-Novak
 # Dominicimon-Parcijalni-Ispit-React-Dominik-Novak
+# Dominicimon-Parcijalni-Ispit-React-Dominik-Novak
